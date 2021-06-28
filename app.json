@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "bsmsatt app version 1.0.0",
+    "slug": "bsmsatt",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/bsmsHelix[BLU]-02.png",
+    "splash": {
+      "image": "./assets/images/bsmsLogo[blu].png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "ts", "tsx", "svg", "sqlite", "db"]
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "bundleIdentifier": "com.bsms.att",
+      "supportsTablet": true
+    },
+    "description": "bsms digital attendance app",
+    "android": {
+      "package": "com.bsms.bsmsatt",
+      "versionCode": 1,
+      "permissions":[]
+    }
+  }
+}
