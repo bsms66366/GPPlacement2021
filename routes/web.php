@@ -1,0 +1,1 @@
+Route::get('user','UserController@index');

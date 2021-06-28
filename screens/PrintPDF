@@ -1,0 +1,86 @@
+import * as React from 'react';
+import { TextInput, View, StyleSheet, Image, Button, Alert, TouchableOpacity, Text, FlatList } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import RNFetchBlob from 'rn-fetch-blob';
+import Toast from 'react-native-simple-toast';
+import * as FileSystem from 'expo-file-system';
+//import RNFS from 'react-native-fs';
+
+export default class Students extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { 
+         pdf_list:[]
+    };
+  }
+
+  componentDidMount(){    
+    const url = 'https://athirst-desertions.000webhostapp.com/download_pdf.php';
+    fetch(url)
+    .then((response) => response.json())
+    .then((responseJson) => {
+       this.setState({
+         pdf_list: responseJson
+       })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  down_file(user_pdf){
+
+    // RNFetchBlob
+    // .config({
+    //     useDownloadManager : true, 
+    //     fileCache : true
+    // })
+    // .fetch('GET', 'http://athirst-desertions.000webhostapp.com/pdfs/{user_pdf}.pdf', {
+    // })
+    // .then((res) => {
+    //   path: 'http://athirst-desertions.000webhostapp.com/pdfs/{user_pdf}.pdf';
+    //   console.log('The file saved to ', res.path());
+    // })
+
+      const url = 'http://athirst-desertions.000webhostapp.com/pdfs/`${user_pdf}`.pdf';
+      const { config, fs } = RNFetchBlob;
+      const downloads = fs.dirs.DownloadDir;
+      return config({
+        // add this option that makes response data to be stored as a file,
+        // this is much more performant.
+        fileCache : true,
+        addAndroidDownloads : {
+          useDownloadManager : true,
+          notification : true,
+          path:  downloads + '/' + user_pdf + '.pdf',
+        }
+      })
+      .fetch('GET', url);
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+         <FlatList
+            data={this.state.pdf_list}
+            keyExtractor={(item, index) => index}
+            renderItem={({ item }) =>
+            <View style={styles.container}>
+                <Text onPress={this.down_file.bind(this, item.user_pdf)}>
+                  {item.user_pdf}
+                </Text>
+            </View>
+            }
+          />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container:{
+    marginTop:100,
+  },
+});

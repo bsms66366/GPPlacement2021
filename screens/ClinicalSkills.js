@@ -1,0 +1,90 @@
+import React from "react";
+import * as WebBrowser from 'expo-web-browser';
+import {
+  Dimensions,
+  Image,
+  //Slider,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator, 
+  Alert,
+  TextInput
+ 
+  //VirtualizedList
+} from "react-native";
+import { Asset } from "expo-asset";
+import Constants from 'expo-constants';
+import { Audio, Video } from "expo-av";
+import * as Font from "expo-font";
+//import List from "../components/List2";
+import { MaterialIcons } from "@expo/vector-icons";
+//import SearchBar from 'react-native-searchbar';
+
+const DATA = require("../data/CSKills.json");
+
+//console.log(DATA)
+export default function App() {
+  return (
+    /* searchData(text) ,
+      const newData = this.arrayholder.filter(item => {
+        const itemData = item.name.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1
+      });
+   
+      this.setState({
+        data: newData,
+        text: text
+        })
+    } */
+    <SafeAreaView style={styles.container}>
+    <View style={styles.Logo}>
+    <Text style={{ fontWeight: 'bold', color: '#FAD607', fontSize: 20, marginTop: 15, marginBottom:5, textAlign:"center"}}>CLINICAL SKILLS RECORDED</Text>
+      </View>
+      <View>
+      <FlatList
+        data={DATA.video.video}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync(item.urlPath)}>
+      
+         <View style={styles.item}>
+          <Text style={styles.title}>{item.title}</Text>
+        </View>
+        </TouchableOpacity> 
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    //marginTop: Constants.statusBarHeight,
+    backgroundColor: '#005E7E',
+  },
+  item: {
+    backgroundColor: '#FAD607',
+    padding: 18,
+    marginVertical: 5,
+    marginHorizontal: 8,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#005E7E",
+
+  },
+});
+
+
+
+
+
+

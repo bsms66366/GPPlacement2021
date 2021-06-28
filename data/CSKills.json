@@ -1,0 +1,30 @@
+{
+	"video": {
+		"video": [
+			{
+				"title": "Consultation",
+				"urlPath": "https://forms.office.com/Pages/ResponsePage.aspx?id=kLsAqf6UWEaLNN1yCExQZE0a1JJNckhFhxzoDgNM5WhUMjBSWUJPSUw4U0tDMlg3TllOQjdXSk1BUy4u"
+			},
+			{
+				"title": "Taking Patient History",
+				"urlPath": ""
+			},
+			{
+				"title": "Intramuscular injection",
+				"urlPath":""
+			},
+			{
+				"title": "CardioVascular Examination",
+				"urlPath": ""
+			},
+			{
+				"title": "Blood Pressure reading",
+				"urlPath": ""
+			},
+			{
+				"title": "Abdominal Examination",
+				"urlPath": ""
+			}
+		]
+	}
+}
