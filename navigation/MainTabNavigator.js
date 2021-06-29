@@ -85,7 +85,7 @@ LinksStack.path = '';
 /*****************************************************modules****/
 const ModuleStack = createStackNavigator(
   {
-    Skillscreen: SkillsScreen,
+    SkillsScreen: SkillsScreen,
   },
   config
 );

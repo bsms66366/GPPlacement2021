@@ -165,6 +165,9 @@ const viewList = (id) => {
       Sharing.shareAsync(uri);
     } 
 //console.log ("PostalCode ="  + placement.toString())
+
+
+
   return (
     <View style={styles.container}>
     <Text style={styles.subTitleText}>Scan barcode and save to list</Text> 
@@ -183,26 +186,18 @@ const viewList = (id) => {
     </View>
     
     </View>
-    <View style={styles.v_container}></View>
- 
+
     <View style={styles.SaveButton}>
     
 {/* <Button onPress={saveItem} title="Save"  />   */}
 
-<TouchableOpacity onPress = {saveItem} title="save" accessible={true} accessibilityLabel="Tap me!">
+<TouchableOpacity onPress = {saveItem} title="save">
 <Text style={styles.subTitleText2}>Save</Text> 
+  </TouchableOpacity> 
+ </View>
 
-<View style={styles.v_container}></View>
-</TouchableOpacity>  
-   <TouchableOpacity onPress={() => execute()} title="Print and Share" accessible={true} accessibilityLabel="Tap me!">
-
-      <Text style={styles.subTitleText3}>Print and Share</Text> 
-      </TouchableOpacity>
-    
-  
-    </View> 
        <View style={styles.SaveButton}>
-  
+
 </View> 
       <FlatList 
         style={{marginLeft : "1%"}}
@@ -233,8 +228,8 @@ const styles = StyleSheet.create({
     //marginLeft: -2,
   },
   SaveButton:{
-   // height: 160,
-    width: 100,
+   height: 25,
+    width: 60,
     marginTop: 20,
     borderColor:'#FAD607',
   },
@@ -274,10 +269,11 @@ const styles = StyleSheet.create({
     height: 44, 
   },
   subTitleText2: {
+    //flexDirection: 'column',
     fontWeight: 'bold',
     fontFamily: 'Roboto-Regular',
     marginTop: 15,
-    marginLeft: 50,
+    marginLeft: 0,
     padding: 5,
     color:'#FAD607',
     fontSize: 18,
@@ -289,19 +285,21 @@ const styles = StyleSheet.create({
     borderWidth: 3,
   },
   subTitleText3: {
+    flexDirection: 'row',
     fontWeight: 'bold',
     fontFamily: 'Roboto-Regular',
     marginLeft: 10,
-    padding: 15,
+    padding: 5,
     color:'#FAD607',
     fontSize: 18,
-    width: 200, 
+    width: 14, 
     height: 30, 
     borderColor: '#FAD607',
     borderStyle:'dotted',
     borderRadius: 4,
     borderWidth: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    alignItems:'flex-start'
   },
   item: {
     backgroundColor: '#FAD607',
@@ -311,19 +309,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginBottom: 15,
   }, 
-  BoxBorder: {
+  /* BoxBorder: {
     marginTop: 25,
-    width: (width /2)-10, 
-    height: '20%',
+    //width: (width /2)-10, 
+    //height: '20%',
     borderColor: '#FAD607',
     borderStyle:'solid',
     borderRadius: 8,
     borderWidth: 3,
     marginHorizontal: 5,
     //justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
-
+ */
 
   Button:{
     color:'#FAD607',
