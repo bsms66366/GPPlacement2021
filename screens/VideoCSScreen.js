@@ -67,9 +67,9 @@ export default function App() {
   //this.setState({ refreshing: false });
  console.log(data);
  
-let newDataArr = data
+/* let newDataArr = data
  newDataArr.push(newData)
- setData(newDataArr)
+ setData(newDataArr) */
 
 
  
