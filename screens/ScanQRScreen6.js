@@ -15,53 +15,8 @@ import { Title } from 'native-base';
 //import connect from '@databases/expo';
 var {height, width} = Dimensions.get('window');
   console.log (height, width)
-//connect to @databases/expo
- //const db = connect(placements.db);
-/*db.query(sql`SELECT * FROM placement;`).then(
-  (results) => console.log(results),
-  (err) => console.error(err),
-); */
-/* // load DB for expo
-FileSystem.downloadAsync(
-  'https://bdr17.brighton.domains/fetch/placement.sqlite3',
-  FileSystem.documentDirectory + 'data.sqlite'
-)
-.then(({ uri }) => {
-  console.log('Finished downloading to ', uri)
-})
-.catch(error => {
-  console.error(error);
-})*/
-const db = SQLite.openDatabase('placement.sqlite3'); 
 
-
-//const db = ${FileSystem,documentDirectory}/SQLite/${name};
- // load DB for expo
-/*   export const openDatabase = async () => {
-    if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite")).exists) {
-      await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + "SQLite");
-    }
-    const [{ uri }] = await Asset.loadAsync(require("../assets/placements.db"));
-    await FileSystem.downloadAsync(uri, FileSystem.documentDirectory + "SQLite/placements.db");
-    return SQLite.openDatabase("../assets/db/placements.db");
-  }; 
- */
-
-/* FileSystem.downloadAsync(
-    '/databases/surgeryloc.db',
-    //'http://example.com/downloads/data.sqlite',
-    FileSystem.documentDirectory + 'data.sqlite'
-  )
-  .then(({ uri }) => {
-    console.log('Finished downloading to ', uri)
-  })
-  .catch(error => {
-    console.error(error);
-  }) */
-  //const db = SQLite.openDatabase('surgeryloc.db');
-
-
-//export default class FlatListBasics extends Component {  
+const db = SQLite.openDatabase('placement.sqlite3');
 const App = () => {
     
   const [barcode, setBarcode] = useState('');
@@ -80,13 +35,13 @@ const App = () => {
   //Database Input
   //const [surgery, setSurgery] = useState({barcode:" " });
   const [surgery, setSurgery] = useState(``);
-  const [title, setTitle] = useState(``);
+  //const [title, setTitle] = useState(``);
   const [placement, setPlacement] = useState([]);
 
 
   useEffect(() => {
     db.transaction(tx => {
-      tx.executeSql('DROP TABLE IF EXISTS placement', []);
+      //tx.executeSql('DROP TABLE IF EXISTS placement', []);
       tx.executeSql('create table if not exists placements (id integer primary key not null, surgery text, title text );');
     });
     updateList();    
@@ -95,9 +50,9 @@ const App = () => {
   // Save course
   const saveItem = () => {
     db.transaction(tx => {
-        //console.log("PostalCode ="  + barcode)
-        //§ tx.executeSql('DROP TABLE IF EXISTS placement', []);
-        tx.executeSql('insert into placements (surgery, title) values (?, ?);', [barcode, title]);    
+        console.log("PostalCode ="  + barcode)
+         tx.executeSql('DROP TABLE IF EXISTS placement', []);
+        tx.executeSql('insert into placements (surgery) values (?);', [barcode]);    
       }, null, updateList
     )
   }
@@ -129,42 +84,27 @@ const viewList = (id) => {
       ); 
     });
   }
-  //Updates.reload();
-/*   //Async function
-  class AsyncStorageExample extends Component {
-    state = {
-       'title': ''
-    }
-    componentDidMount = () => AsyncStorage.getItem('title').then((value) => this.setState({ 'title': value }))
-    
-    setName = (value) => {
-       AsyncStorage.setItem('title', value);
-       this.setState({ 'title': value });
-    }
-  } */
 
-
-  //fetch('https://www.icloud.com/iclouddrive/bsms/Logbook/placement.sqlite3', {
-    fetch('https://bdr17.brighton.domains/fetch/placement.sqlite3', {
+    fetch('http://127.0.0.1:8000/api/placement', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      surgery: 'surgery',
-      title: 'title'
+      "surgery":"BSMS-cj test"
+      
     })
   });
 
 
-  //render() { 
+/*   //render() { 
      async function execute() {
       const html =  `<h1> Surgery Barcode </h1>`+ JSON.stringify(placement);
       const { uri } = await Print.printToFileAsync({ html });
       Sharing.shareAsync(uri);
     } 
-//console.log ("PostalCode ="  + placement.toString())
+console.log ("PostalCode ="  + placement.toString()) */
 
 
 
