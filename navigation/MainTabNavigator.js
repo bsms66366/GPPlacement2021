@@ -28,9 +28,9 @@ import ResultScreen from '../screens/ResultScreen';
 import CSHomeScreen from '../screens/CSHomeScreen';
 //import PlacementScreen from '../screens/PlacementScreen';
 //import ScannerScreen from '../screens/ScannerScreen';
-import ScanQRScreen6 from '../screens/ScanQRScreen6';
+//import ScanQRScreen6 from '../screens/ScanQRScreen6';
 //import WelcomeScreen from '../screens/WelcomeScreen';
-//import LocationLog2 from '../screens/LocationLog2';
+import LocationLog from '../screens/LocationLog';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
 //import fetchScreen2 from '../screens/fetchScreen2';
@@ -67,7 +67,7 @@ HomeStack.path = '';
 /*****************************************************Courses****/
 const LinksStack = createStackNavigator(
   {
-    ScanQRScreen6: ScanQRScreen6,
+    LocationLog: LocationLog,
   },
   config
 );

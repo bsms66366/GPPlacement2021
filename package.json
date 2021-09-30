@@ -70,7 +70,9 @@
     "react-navigation": "^3.12.0",
     "react-navigation-stack": "^2.7.0",
     "rn-viewpager": "^1.2.9",
-    "rn-viewpager-handy": "^1.5.0"
+    "rn-viewpager-handy": "^1.5.0",
+    "expo-auth-session": "~2.0.0",
+    "expo-random": "~9.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^8.3.0",

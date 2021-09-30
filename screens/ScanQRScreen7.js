@@ -1,18 +1,12 @@
 import React, { Component, useEffect, useState, setState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert, Text, TextInput, View, StyleSheet, Button, Dimensions, TouchableOpacity, FlatList } from 'react-native';
+import { Alert, Text, TextInput, View, StyleSheet, Button, Dimensions, TouchableOpacity, FlatList} from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import * as Print from 'expo-print';
-import * as Updates from 'expo-updates';
-import * as Sharing from 'expo-sharing';
-import { Title } from 'native-base';
-//import { Updates } from 'expo';
-//import connect from '@databases/expo';
+
 var {height, width} = Dimensions.get('window');
   console.log (height, width)
 
@@ -51,7 +45,7 @@ const App = () => {
   const saveItem = () => {
     db.transaction(tx => {
         console.log("PostalCode ="  + barcode)
-         tx.executeSql('DROP TABLE IF EXISTS placement', []);
+         //tx.executeSql('DROP TABLE IF EXISTS placement', []);
         tx.executeSql('insert into placements (surgery) values (?);', [barcode]);    
       }, null, updateList
     )
@@ -84,38 +78,22 @@ const viewList = (id) => {
       ); 
     });
   }
+  
+  useEffect(() => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ surgery: 'POST Request Example' })
+    };
+    fetch('https://bdr17.brighton.domains/bdr17_placements_api', requestOptions)
+        .then(response => response.json())
+        .then(surgery => setPostId(surgery.id));
+        console.log(rows._array)
+// empty dependency array means this effect will only run once (like componentDidMount in classes)
+}, []);
 
- fetch ('http://127.0.0.1:8000/placement/api/placement',{
-   method: 'POST',
-    headers: {
-      Accept:'*/*',
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-   },
-    body: JSON.stringify({
-    //surgery:'(surgery) values (?);'
-    "surgery": " testing stuff"
-      
-   })
-  }); 
-  //console.log ("database entry ="  + barcode.toString()) 
-
-/*   //render() { 
-     async function execute() {
-      const html =  `<h1> Surgery Barcode </h1>`+ JSON.stringify(placement);
-      const { uri } = await Print.printToFileAsync({ html });
-      Sharing.shareAsync(uri);
-    } 
-console.log ("PostalCode ="  + placement.toString()) 
-
-useEffect(() => {
-  fetch('http://127.0.0.1:8000/api/placement')
-    .then((response) => response.json())
-    .then((json) => setBarcode(json.surgery))
-    .catch((error) => console.error(error))
-    .finally(() => setLoading(false));
-}, []);*/
-
+  
   return (
     <View style={styles.container}>
     <Text style={styles.subTitleText}>Scan barcode and save to list</Text> 
@@ -137,7 +115,7 @@ useEffect(() => {
 
     <View style={styles.SaveButton}>
     
-{/* <Button onPress={saveItem} title="Save"  />   */}
+{/* <Button onPurls={saveItem} title="Save"  />   */}
 
 <TouchableOpacity onPress = {saveItem} title="save">
 <Text style={styles.subTitleText2}>Save</Text> 
@@ -151,26 +129,27 @@ useEffect(() => {
         style={{marginLeft : "1%"}}
         keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.surgery}</Text>
-        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.id)}></Text>
-        <Button title="Delete" onPress={() => deleteItem(item.id)} /> 
-        </View>} 
+        <Text style={{fontSize: 18, color: '#0000ff'}} onPurls={() => viewItem(item.id)}></Text></View>} 
         data={placement} 
         //ItemSeparatorComponent={listSeparator} 
       /> 
      
-      {/* <Button title="Print and Share" onPress={() => execute()} />  */}   
+       {/* <Button title="Print and Share" onPurls={() => execute()} />  
+       <Button title="Post to database" onPurls={() => this.postData('POST Button Click')} />   */}
     </View>
    
   );
   
 };
+ 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
     backgroundColor: '#005E7E',
-    padding: 8,
+    //backgroundColor: '#ecf0f1',
+    justifyContent: "center",
+    alignItems: "center",
   },
   TextBox: {
     //height: 160,
