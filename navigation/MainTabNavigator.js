@@ -1,9 +1,11 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome5 } from '@expo/vector-icons';
 //import * as Font from 'expo-font';
 import TabBarIcon from '../components/TabBarIcon';
+//import Details from './Components/Details';
 //import HomeScreen from '../screens/HomeScreen';
 //import AttendanceScreen from '../screens/AttendanceScreen';
 import ModulesScreen from '../screens/ModulesScreen';
@@ -26,16 +28,20 @@ import ClinicalSkills from '../screens/ClinicalSkills';
 //import CSScreen from '../screens/CSScreen';
 import ResultScreen from '../screens/ResultScreen';
 import CSHomeScreen from '../screens/CSHomeScreen';
+//import PhoneLogin from '../screens/PhoneLogin';
 //import PlacementScreen from '../screens/PlacementScreen';
 //import ScannerScreen from '../screens/ScannerScreen';
 //import ScanQRScreen6 from '../screens/ScanQRScreen6';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 import LocationLog from '../screens/LocationLog';
+//import FingerPrint from '../screens/FingerPrint';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
 //import fetchScreen2 from '../screens/fetchScreen2';
 //import postScreen from '../screens/postScreen';
 //import asyncAwait from '../screens/asyncAwait';
+//import Details from './Screens/Details';
+import fetchScreen4 from '../screens/fetchScreen4';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -114,21 +120,21 @@ SessionsStack.navigationOptions = {
 SessionsStack.path = '';
 
 /*****************************************************path pots****/
-/* const SettingsStack = createStackNavigator(
+ const SettingsStack = createStackNavigator(
   {
-    ResultScreen: ResultScreen,
+    fetchScreen4: fetchScreen4,
   },
   config
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Quizzes',
+  tabBarLabel: 'Attendance',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-trophy' : 'md-link'} />
   ),
 };
 
-SettingsStack.path = ''; */
+SettingsStack.path = '';
 /*****************************************************feedback****/
 const GameStack = createStackNavigator(
   {
@@ -153,7 +159,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   ModuleStack,
   SessionsStack,
-  //SettingsStack,
+  SettingsStack,
   GameStack,
   
 });

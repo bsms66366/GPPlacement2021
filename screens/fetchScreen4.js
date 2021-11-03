@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
 import axios from 'axios';
+import React, { useEffect, useState, setState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 
-export default App = () => {
+export default class App extends Component 
+{
+async componentDidMount(){
 
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  //console.log(data);
+  const res = await axios.get('http://127.0.0.1:8000/api/Placement');
+  //console.log(res);
+  if (res.data.status === 200)
+  {
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/Placements')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
-  
+    this.setState({
+      surgery: res.data.surgery
+    });
+  }
+}
+
+  render(){
   return (
 
     <View style={{ flex: 1, padding: 24 }}>
@@ -36,7 +38,7 @@ export default App = () => {
   );
 };
     
-    
+}  
     
     
     
