@@ -41,7 +41,7 @@ const App = () => {
 
   useEffect(() => {
     db.transaction(tx => {
-      tx.executeSql('DROP TABLE IF EXISTS placement', []);
+      //tx.executeSql('DROP TABLE IF EXISTS placement', []);
       tx.executeSql('create table if not exists placements (id integer primary key not null, surgery text, title text );');
     });
     updateList();    
@@ -50,7 +50,11 @@ const App = () => {
   // Save course
   const saveItem = () => {
     db.transaction(tx => {
+<<<<<<< HEAD
         //console.log("PostalCode ="  + barcode)
+=======
+        console.log("PostalCode ="  + barcode)
+>>>>>>> a22614e45a05c0b5e0c6748dc28ad2d7d6cd58dc
          tx.executeSql('DROP TABLE IF EXISTS placement', []);
         tx.executeSql('insert into placements (surgery) values (?);', [barcode]);    
       }, null, updateList
@@ -87,26 +91,40 @@ const viewList = (id) => {
 
     fetch('http://127.0.0.1:8000/placement/api/placement', {
     method: 'POST',
+ fetch ('http://127.0.0.1:8000/placement/api/placement',{
+   method: 'POST',
     headers: {
+      Accept:'*/*',
       Accept: 'application/json',
       'Content-Type': 'application/json'
-    },
+   },
     body: JSON.stringify({
       surgery: 'surgery',
       
     })
   });
+    //surgery:'(surgery) values (?);'
+    "surgery": " testing stuff"
+      
+   })
+  }); 
+  //console.log ("database entry ="  + barcode.toString()) 
 
-
-  //render() { 
+/*   //render() { 
      async function execute() {
       const html =  `<h1> Surgery Barcode </h1>`+ JSON.stringify(placement);
       const { uri } = await Print.printToFileAsync({ html });
       Sharing.shareAsync(uri);
     } 
-//console.log ("PostalCode ="  + placement.toString())
+console.log ("PostalCode ="  + placement.toString()) 
 
-
+useEffect(() => {
+  fetch('http://127.0.0.1:8000/api/placement')
+    .then((response) => response.json())
+    .then((json) => setBarcode(json.surgery))
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+}, []);*/
 
   return (
     <View style={styles.container}>
@@ -143,7 +161,9 @@ const viewList = (id) => {
         style={{marginLeft : "1%"}}
         keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.surgery}</Text>
-        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.id)}></Text></View>} 
+        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.id)}></Text>
+        <Button title="Delete" onPress={() => deleteItem(item.id)} /> 
+        </View>} 
         data={placement} 
         //ItemSeparatorComponent={listSeparator} 
       /> 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome5 } from '@expo/vector-icons';
 //import * as Font from 'expo-font';
 import TabBarIcon from '../components/TabBarIcon';
+//import Details from './Components/Details';
 //import HomeScreen from '../screens/HomeScreen';
-//import AttendanceScreen from '../screens/AttendanceScreen';
+import AttendanceScreen from '../screens/AttendanceScreen';
 import ModulesScreen from '../screens/ModulesScreen';
 //import coursePage from '../screens/coursePage';
 //import RegionsScreen from '../screens/RegionsScreen';
@@ -18,24 +20,30 @@ import ExaminationsScreen1 from '../screens/ExaminationsScreen1';
 //import ExamLog from '../screens/ExamLog';
 import SkillsScreen from '../screens/SkillsScreen';
 //import Video360Screen from '../screens/Video360Screen';
-import VideoCSScreen from '../screens/VideoCSScreen';
+//import VideoCSScreen from '../screens/VideoCSScreen';
 //import svgFileScreen from '../screens/svgFileScreen'
 //import svgFile2 from '../screens/svgFile2'
 //import VideoViews from '../screens/VideoViews'
 import ClinicalSkills from '../screens/ClinicalSkills';
-//import CSScreen from '../screens/CSScreen';
+import CSScreen from '../screens/CSScreen';
 import ResultScreen from '../screens/ResultScreen';
 import CSHomeScreen from '../screens/CSHomeScreen';
+//import PhoneLogin from '../screens/PhoneLogin';
 //import PlacementScreen from '../screens/PlacementScreen';
 //import ScannerScreen from '../screens/ScannerScreen';
-import ScanQRScreen6 from '../screens/ScanQRScreen6';
+//import ScanQRScreen6 from '../screens/ScanQRScreen6';
 //import WelcomeScreen from '../screens/WelcomeScreen';
-//import LocationLog2 from '../screens/LocationLog2';
+import LocationLog from '../screens/LocationLog';
+import FingerPrint1 from '../screens/FingerPrint1';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
 //import fetchScreen2 from '../screens/fetchScreen2';
 //import postScreen from '../screens/postScreen';
 //import asyncAwait from '../screens/asyncAwait';
+//import Details from './Screens/Details';
+
+import FetchScreen1 from '../screens/FetchScreen1';
+//import HistoryScreen from '../screens/HistoryScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -67,7 +75,7 @@ HomeStack.path = '';
 /*****************************************************Courses****/
 const LinksStack = createStackNavigator(
   {
-    ScanQRScreen6: ScanQRScreen6,
+    LocationLog: LocationLog,
   },
   config
 );
@@ -75,7 +83,7 @@ const LinksStack = createStackNavigator(
 LinksStack.navigationOptions = {
   tabBarLabel: 'sign in',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android'? 'md-barcode' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android'? 'md-compass' : 'md-link'} />
     //<TabBarIcon focused={focused} name={Platform.OS === 'android' ? 'md-school' : 'md-link'} />
   ),
 };
@@ -100,7 +108,7 @@ ModuleStack.navigationOptions = {
 
 const SessionsStack = createStackNavigator(
   {
-    VideoCSScreen: VideoCSScreen,
+    Fetch1Screen: Fetch1Screen,
   },
   config
 );
@@ -114,21 +122,21 @@ SessionsStack.navigationOptions = {
 SessionsStack.path = '';
 
 /*****************************************************path pots****/
-/* const SettingsStack = createStackNavigator(
+ const SettingsStack = createStackNavigator(
   {
-    ResultScreen: ResultScreen,
+    AttendanceScreen: AttendanceScreen,
   },
   config
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Quizzes',
+  tabBarLabel: 'Attendance',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-trophy' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-list' : 'md-link'} />
   ),
 };
 
-SettingsStack.path = ''; */
+SettingsStack.path = '';
 /*****************************************************feedback****/
 const GameStack = createStackNavigator(
   {
@@ -140,7 +148,7 @@ const GameStack = createStackNavigator(
 GameStack.navigationOptions = {
   tabBarLabel: 'Modules',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-list-box' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-book' : 'md-link'} />
   ),
 };
 
@@ -153,7 +161,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   ModuleStack,
   SessionsStack,
-  //SettingsStack,
+  SettingsStack,
   GameStack,
   
 });

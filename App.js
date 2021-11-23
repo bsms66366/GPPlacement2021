@@ -1,4 +1,7 @@
-import { AppLoading } from 'expo';
+//import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
+import isLoading from 'is-loading';
+
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
@@ -41,11 +44,14 @@ async function loadResourcesAsync() {
       ...Ionicons.font,
       // We include SpaceMono because we use it in HomeScreen.js. Feel free to
       // remove this if you are not using it in your app
-      'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+      //'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-      'MaterialIcons': require('native-base/Fonts/MaterialIcons.ttf'),
+      //'Roboto-Regular': require('native-base/Fonts/Roboto-Regular.ttf'),
+      'Roboto_Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+      'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
+      //'Roboto-medium': require('native-base/Fonts/Roboto-medium.ttf'),
+//'MaterialIcons': require('native-base/Fonts/MaterialIcons.ttf'),
+      'MaterialIcons': require('./assets/fonts/MaterialIcons.ttf'),
     }),
   ]);
 }

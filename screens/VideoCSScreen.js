@@ -27,7 +27,7 @@ import * as Font from "expo-font";
 import { MaterialIcons } from "@expo/vector-icons";
 //import SearchBar from 'react-native-searchbar';
 
-//const DATA = require("../data/VideoCS.json");
+const DATA = require('http://192.168.1.59:8000/api/video');
 //console.log(DATA)
 /* 
 const wait = timeout => {
@@ -53,14 +53,14 @@ export default function App() {
 
   //console.log(data);
 
-  useEffect(() => {
+/*   useEffect(() => {
     fetch('https://bdr17.brighton.domains/fetch/VideoCS.json')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false)); 
   }, 
-  []);
+  []); */
 /* null,
  forceUpdate; */
 
@@ -84,13 +84,14 @@ export default function App() {
       </View>
       <FlatList
         //data={DATA.video.video}
-        data={data.data.data}
+        data={DATA.name.video}
+        //data={data.data.data}
         keyExtractor={(id,item, index) => 'item'+index} //Add this line
         renderItem={({ item }) => (
-          <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync(item.urlPath)}>
+          <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync(item.video)}>
       
          <View style={styles.item}>
-          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.name}>{item.video}</Text>
         </View>
         </TouchableOpacity> 
         )}
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginBottom: 15,
   },
-  title: {
+  name: {
     fontSize: 16,
     //fontWeight: "bold",
     color: "#000",
