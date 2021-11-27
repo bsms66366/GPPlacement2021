@@ -1,114 +1,170 @@
-//import React from "react";
-import React, { useEffect, useState, setState } from 'react';
-import { View, RefreshControl, StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList} from 'react-native';
-//import Constants from 'expo-constants';
+// React Native Axios – To Make HTTP API call in React Native
+// https://aboutreact.com/react-native-axios/
+
+import React, {useState,useEffect} from 'react';
+//import React in our code.
+import {StyleSheet, SafeAreaView,View, TouchableOpacity, Text, FlatList, TouchableHighlight, VirtualizedList, StatusBar} from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
-import {
-  Dimensions,
-  Image,
-  //Slider,
-  //Text,
-  //StyleSheet,
- 
-  //View,
-  //SafeAreaView,
+//import all the components we are going to use.
+import axios from 'axios';
+
+
+
+const App = () => {
   
-  ActivityIndicator, 
-  Alert,
-  TextInput
- 
-  //VirtualizedList
-} from "react-native";
-import { Asset } from "expo-asset";
-import Constants from 'expo-constants';
-import { Audio, Video } from "expo-av";
-import * as Font from "expo-font";
-//import List from "../components/List2";
-import { MaterialIcons } from "@expo/vector-icons";
-//import SearchBar from 'react-native-searchbar';
-
-const DATA = require('http://192.168.1.59:8000/api/video');
-//console.log(DATA)
-/* 
-const wait = timeout => {
-  return new Promise(resolve => {
-    setTimeout(resolve, timeout);
-  });
-}; */
-
-//const [refreshing, setRefreshing] = React.useState(false);
-
-export default function App() {
-  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  //const [forceUpdate, forceUpdateId] = useForceUpdate();
-  //const [handleRefresh, setfresh] = setState ({ refreshing: false });
-  isFetching: false,
-//re-freshlist
-/* const onRefresh = React.useCallback(() => {
-  setRefreshing(true);
+  const getDataUsingSimpleGetCall = () => {
+    axios
+      .get('http://192.168.1.59:8000/api/video')
+      .then(function (response) {
+        // handle success
+        alert(JSON.stringify(response.data));
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        alert(error.message);
+      })
+      .finally(function () {
+        // always executed
+        alert('getting data from server');
+      });
+      console.log(response.data);
+  }; 
+  
+/* 
+  const getDataUsingAsyncAwaitGetCall = async () => {
+    try {
+      const response = await axios.get(
+        'http://192.168.1.59:8000/api/video'
+        // 'https://jsonplaceholder.typicode.com/posts/1',
+      );
+      alert(JSON.stringify(response.data));
+    } catch (error) {
+      // handle error
+      alert(error.message);
+    }
+    console.log(response.data);
+  };
 
-  wait(2000).then(() => setRefreshing(false));
-}, []); */
+  const postDataUsingSimplePostCall = () => {
+    axios
+      .post('https://jsonplaceholder.typicode.com/posts', {
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+      })
+      .then(function (response) {
+        // handle success
+        alert(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        // handle error
+        alert(error.message);
+      });
+  };
 
-  //console.log(data);
+  const multipleRequestsInSingleCall = () => {
+    axios
+      .all([
+        axios
+          .get('https://jsonplaceholder.typicode.com/posts/1')
+          .then(function (response) {
+            // handle success
+            alert('Post 1 : ' + JSON.stringify(response.data));
+          }),
+        axios
+          //.get('https://jsonplaceholder.typicode.com/posts/2')
+          .get('http://192.168.1.59:8000/api/video/2')
+          .then(function (response) {
+            // handle success
+            alert('video 2 : ' + JSON.stringify(response.data));
+          }),
+      ])
+      .then(
+        axios.spread(function (acct, perms) {
+          // Both requests are now complete
+          alert('Both requests are now complete');
+        }),
+      ); 
+  };*/
+  //const { text, updateText, data, searchImages } = props.store;
 
-/*   useEffect(() => {
-    fetch('https://bdr17.brighton.domains/fetch/VideoCS.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false)); 
-  }, 
-  []); */
-/* null,
- forceUpdate; */
-
-  //this.setState({ refreshing: false });
- console.log(data);
- 
-/* let newDataArr = data
- newDataArr.push(newData)
- setData(newDataArr) */
-
-
- 
   return (
-    <SafeAreaView style={styles.container}>
-    <View style={styles.Logo}>
-    <View style={styles.Logo}>
-    <Text style={{ color: '#FFF', fontSize: 20, marginTop: 10, marginBottom:15, textAlign:"center"}}>CLINICAL SKILLS VIDEOS</Text>
-      </View>
-      <View>
-        
-      </View>
+    <View style={styles.container}>
+      <Text style={{fontSize: 30, textAlign: 'center'}}>
+        Example of Axios Networking in React Native
+      </Text>
+      {/*Running GET Request*/}
+ <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={getDataUsingSimpleGetCall}>
+        <Text>Simple Get Call</Text>
+      </TouchableOpacity>
+       
       <FlatList
         //data={DATA.video.video}
-        data={DATA.name.video}
+        data={getDataUsingSimpleGetCall}
         //data={data.data.data}
         keyExtractor={(id,item, index) => 'item'+index} //Add this line
         renderItem={({ item }) => (
           <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync(item.video)}>
       
          <View style={styles.item}>
-          <Text style={styles.name}>{item.video}</Text>
+          <Text style={styles.name}>{item.name}</Text>
         </View>
         </TouchableOpacity> 
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-      </View>
-   
-    </SafeAreaView>
-  );
-}
 
-//styles
+
+{/*       <FlatList
+  ItemSeparatorComponent={
+    Platform.OS !== 'android' &&
+    (({ highlighted }) => (
+      <View
+        style={[
+          style.separator,
+          highlighted && { marginLeft: 0 }
+        ]}
+      />
+    ))
+  }
+  data={[{ name: 'Name Text', key: 'item1' }]}
+  keyExtractor={(id, item, index) => 'item'+index} //Add this line
+  //keyExtractor= {(item: key, index: Id)} => string;
+  renderItem={({ item, index, separators }) => (
+    <TouchableHighlight
+      key={item.key}
+      //onPress={getDataUsingSimpleGetCall}>
+      onPress={() => _this.onPress(item)}
+      //onPress={() => onPress(item)}
+      //onPress={() => WebBrowser.openBrowserAsync(item.name)}
+      onShowUnderlay={separators.highlight}
+      onHideUnderlay={separators.unhighlight}>
+      <View style={{ backgroundColor: 'green' }}>
+        <Text>{item.name}</Text>
+      </View>
+    </TouchableHighlight>
+  )}
+/> */}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
     flex: 1,
-    //marginTop: Constants.statusBarHeight,
-    backgroundColor: '#005E7E',
+    padding: 16,
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: '100%',
+    marginTop: 16,
   },
   item: {
     backgroundColor: '#FAD607',
@@ -118,16 +174,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginBottom: 15,
   },
-  name: {
-    fontSize: 16,
-    //fontWeight: "bold",
-    color: "#000",
-
-  },
 });
 
-
-
-
-
-
+export default App;

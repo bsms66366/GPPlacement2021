@@ -35,10 +35,10 @@ export default function App() {
         tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress, title]);    
       }, null, updateList
       )
-      console.log("works")
+      console.log("studentNumber =" + title)
   
 axios.post(
-  'http://192.168.1.59:8000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  'http://192.168.1.59:8000/api/placement',{ title:title, surgery:displayCurrentAddress }
 
 )
 .then(data => console.log(data))
@@ -182,7 +182,6 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         onChangeText={(title) => setTitle(title)}
         value={title}/>  
      <TextInput placeholder='Postcode' style={{ marginTop: 5, marginBottom: 5,  fontSize:18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        
         value={displayCurrentAddress}
         editable={false} /> 
      {/*    <TextInput placeholder='Postcode' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}

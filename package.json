@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --port 192.168.1.59:8000",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -90,7 +90,10 @@
   },
   "devDependencies": {
     "babel-preset-expo": "8.3.0",
-    "jest-expo": "^40.0.0"
+    "jest-expo": "^40.0.0",
+    "typescript": "~4.0.0",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2"
   },
   "private": true
 }

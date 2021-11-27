@@ -32,17 +32,18 @@ export default function App() {
   const saveItem = () => {
     db.transaction(tx => {
       console.log("PostalCode ="  + displayCurrentAddress)
-        tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress, title]);    
+      console.log("Student Number ="  + title)
+        tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress]);    
       }, null, updateList
       )
-      console.log("works")
+      console.log(title)
   
 axios.post(
-  'http://192.168.1.59:8000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  'http://192.168.1.59:8000/api/placement',{ surgery:displayCurrentAddress, title:title }
 
 )
 .then(data => console.log(data))
-  .catch(data => console.log(data))
+  .catch(data => console.log(data.data.errors))
 
  /* fetch('http://192.168.1.59:8000/api/placement', {
     method: 'POST',
@@ -182,7 +183,6 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         onChangeText={(title) => setTitle(title)}
         value={title}/>  
      <TextInput placeholder='Postcode' style={{ marginTop: 5, marginBottom: 5,  fontSize:18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        
         value={displayCurrentAddress}
         editable={false} /> 
      {/*    <TextInput placeholder='Postcode' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
@@ -197,7 +197,7 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.postalCode}, {item.title}</Text>
         <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.title)}></Text></View>} 
-        data={surgery} 
+        data={surgery, title} 
         //ItemSeparatorComponent={listSeparator} 
       
       />      

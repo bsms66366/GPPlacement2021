@@ -14,7 +14,7 @@ export default function App() {
   
 
   const [postalCode, setPostalcode] = useState('');
-  const [title, setTitle] = useState('');
+  const [name, setName] = useState('');
   const [surgery, setsurgery] = useState([]);
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
     'Wait, we are fetching you location...'
@@ -23,7 +23,7 @@ export default function App() {
   useEffect(() => {
     db.transaction(tx => {
       tx.executeSql('DROP TABLE IF EXISTS locationdb', []);
-      tx.executeSql('create table if not exists surgery (id integer primary key not null, postalCode text,  title text);');
+      tx.executeSql('create table if not exists surgery (id integer primary key not null, postalCode text,  name text);');
     });
     updateList();    
   }, []);
@@ -32,13 +32,13 @@ export default function App() {
   const saveItem = () => {
     db.transaction(tx => {
       console.log("PostalCode ="  + displayCurrentAddress)
-        tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress, title]);    
+        tx.executeSql('insert into surgery (postalCode, name) values (?, ?);',[displayCurrentAddress, name]);    
       }, null, updateList
       )
-      console.log("works")
+      console.log("studentNumber =" + name)
   
 axios.post(
-  'http://192.168.1.59:8000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  'http://192.168.1.59:8000/api/placement',{ title:name, surgery:displayCurrentAddress }
 
 )
 .then(data => console.log(data))
@@ -179,10 +179,9 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 
 
       <TextInput placeholder='Student Number' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(title) => setTitle(title)}
-        value={title}/>  
+        onChangeText={(name) => setName(name)}
+        value={name}/>  
      <TextInput placeholder='Postcode' style={{ marginTop: 5, marginBottom: 5,  fontSize:18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        
         value={displayCurrentAddress}
         editable={false} /> 
      {/*    <TextInput placeholder='Postcode' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
@@ -195,9 +194,12 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
       <FlatList 
         style={{marginLeft : "1%"}}
         keyExtractor={item => item.id.toString()} 
-        renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.postalCode}, {item.title}</Text>
-        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.title)}></Text></View>} 
+        renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.postalCode}, {item.name}</Text>
+        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.name)}></Text>
+        <Button title="Delete" onPress={() => deleteItem(item.id)} /> 
+        </View>} 
         data={surgery} 
+
         //ItemSeparatorComponent={listSeparator} 
       
       />      

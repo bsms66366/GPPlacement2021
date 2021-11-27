@@ -20,7 +20,8 @@ import ExaminationsScreen1 from '../screens/ExaminationsScreen1';
 //import ExamLog from '../screens/ExamLog';
 import SkillsScreen from '../screens/SkillsScreen';
 //import Video360Screen from '../screens/Video360Screen';
-//import VideoCSScreen from '../screens/VideoCSScreen';
+import VideoCSScreen2 from '../screens/VideoCSScreen2';
+
 //import svgFileScreen from '../screens/svgFileScreen'
 //import svgFile2 from '../screens/svgFile2'
 //import VideoViews from '../screens/VideoViews'
@@ -41,8 +42,8 @@ import FingerPrint1 from '../screens/FingerPrint1';
 //import postScreen from '../screens/postScreen';
 //import asyncAwait from '../screens/asyncAwait';
 //import Details from './Screens/Details';
-
-import FetchScreen1 from '../screens/FetchScreen1';
+//import fetchScreen1 from '../screens/fetchScreen1';
+//import FetchScreen1 from '../screens/FetchScreen1';
 //import HistoryScreen from '../screens/HistoryScreen';
 
 const config = Platform.select({
@@ -108,7 +109,7 @@ ModuleStack.navigationOptions = {
 
 const SessionsStack = createStackNavigator(
   {
-    Fetch1Screen: Fetch1Screen,
+    VideoCSScreen2: VideoCSScreen2,
   },
   config
 );
