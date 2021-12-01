@@ -31,19 +31,22 @@ export default function App() {
   // Save surgery
   const saveItem = () => {
     db.transaction(tx => {
-      console.log("PostalCode ="  + displayCurrentAddress)
-        tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress, title]);    
+      console.log("PostalCode ="  + displayCurrentAddress,"name =" + title)
+        tx.executeSql('insert into surgery (postalCode, title) values (?, ?);',[displayCurrentAddress,title]);    
       }, null, updateList
       )
       console.log("works")
   
-axios.post(
+ axios.post(
   'http://192.168.1.59:8000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  //'http://192.168.1.59:19000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  //'http://127.0.0.1:19000/api/placement',{ surgery:displayCurrentAddress, name:title}
+  //'http://127.0.0.1:8000/api/placement',{ surgery:displayCurrentAddress, name:title}
 
 )
 .then(data => console.log(data))
   .catch(data => console.log(data))
-
+ 
  /* fetch('http://192.168.1.59:8000/api/placement', {
     method: 'POST',
     headers: {
@@ -188,7 +191,8 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
      {/*    <TextInput placeholder='Postcode' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
         onValueChange={(postalCode) => setPostcode (postalCode)}
         value={displayCurrentAddress} />  */}
-      <Button onPress={saveItem} title="Save" /> 
+        <Button onPress={saveItem} title="Save" /> 
+      
 
  
       
@@ -196,24 +200,15 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         style={{marginLeft : "1%"}}
         keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.postalCode}, {item.title}</Text>
-        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.title)}></Text></View>} 
+        <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.title)}></Text>
+         <Button title="Delete" onPress={() => deleteItem(item.id)} />
+        </View>} 
         data={surgery} 
         //ItemSeparatorComponent={listSeparator} 
       
       />      
     </View>
   );
-/*   const URI = 'http://CJs-Work-Mac.local/api/Placement/${surgery}';
- const storeData = async (value) => {
-    try {
-            let response = await fetch(URI + '/api/placement');
-            let responseJsonData = await response.json();
-            //return responseJsonData;
-        }
-    catch(e) {
-        console.log(e)
-    }
-} */
 }
 
 const styles = StyleSheet.create({
