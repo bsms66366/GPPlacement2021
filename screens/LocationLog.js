@@ -177,7 +177,7 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
   return (
     <View style={styles.container}>
     <Text style={{marginTop: 30, fontSize: 20}}>Current location</Text>
-      <Image source={require('../assets/geo.png')} style={styles.image} />
+      <Image source={require('../assets/geoyellow.png')} style={styles.image} />
       {/* <Text style={styles.text}>{displayCurrentAddress}</Text> */}
 
 
@@ -214,7 +214,7 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 const styles = StyleSheet.create({
  container: {
   flex: 1,
-  backgroundColor: '#fff',
+  backgroundColor: '#005E7E',
   alignItems: 'center',
   justifyContent: 'center',
  },

@@ -72,9 +72,9 @@ const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     //await Promise.all(data)
-    //fetch('http://192.168.1.59:8000/api/video')
+    fetch('http://192.168.1.59:8000/api/room')
     //fetch('http://CJs-Work-Mac.local/api/video')
-    fetch('http://127.0.0.1:8000/api/video')
+    //fetch('http://127.0.0.1:8000/api/rooms')
     
       .then((response) => response.json())
       .then((json) => setData(json))
@@ -92,7 +92,7 @@ const [isLoading, setLoading] = useState(true);
 
 
 
-  {/*     <Text style={styles.header}>Progress Chart</Text>
+    <Text style={styles.header}>Progress Chart</Text>
       <ProgressChart
         //data={[0.4, 0.6, 0.8]}
         data={[data.id]}
@@ -112,7 +112,7 @@ const [isLoading, setLoading] = useState(true);
           marginVertical: 8,
           borderRadius: 16,
         }}
-      /> */}
+      />
 
   
 {/* <ProgressCircle

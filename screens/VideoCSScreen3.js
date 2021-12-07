@@ -32,7 +32,7 @@ import axios from 'axios';
 export default function App() {
   //get app from API
  
-axios.get('Web URL')
+axios.get('http://192.168.1.59:8000/api/video')
 .then(function(response) {
     // handle response
 }).catch(function(error) {
@@ -76,5 +76,5 @@ axios.get('Web URL')
     //fontWeight: "bold",
     color: "#000"
 
-  },
-//});
+  }
+});

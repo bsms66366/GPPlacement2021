@@ -1,11 +1,17 @@
-import React from 'react';
+//import React from 'react';
+import React, { Component } from 'react';
 import { createSwitchNavigator, SafeAreaView } from 'react-navigation';
 import {ScrollView, StyleSheet, View, Image, Text, Button, Dimensions, TouchableOpacity} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
+import * as LocalAuthentication from 'expo-local-authentication';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 import { StatusBar } from 'expo-status-bar';
 import * as WebBrowser from 'expo-web-browser';
 import * as Font from 'expo-font';
+import LocationLog from '../screens/LocationLog';
 //import ResourcesScreen from '../screens/ResourcesScreen';
 
 export default function LinksScreen() {
@@ -14,6 +20,29 @@ export default function LinksScreen() {
   
   SafeAreaView.setStatusBarHeight(0);
 
+  scanFingerPrint = async () => {
+    try {
+      let results = await LocalAuthentication.authenticateAsync();
+      if (results.success) {
+       let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      alert('Permission to access location was denied'
+      );
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    //alert (JSON.stringify(location));
+        WebBrowser.openBrowserAsync('http://192.168.1.59:8000/api/Student'),alert('Now login to your Eportfolio!');
+      } else {
+        this.setState({
+          failedCount: this.state.failedCount + 1,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{flex: 1, flexDirection: 'row', flexWrap:'wrap'}}>
@@ -21,8 +50,13 @@ export default function LinksScreen() {
       <View style={{ backgroundColor: "#005E7E", alignItems: 'center'}}>
         <Text accessible={true} accessibilityLabel="bsms digital attendance" style={styles.titleText} style={{ color: 'white', fontSize: 20, marginTop: 20, textAlign:"center"}}>BSMS DIGITAL PLACEMENT</Text>
         <Text accessible={true} accessibilityLabel="and skills record" style={styles.titleText} style={{ color: 'white', fontSize: 20, marginTop: 1, textAlign:"center"}}>CLINICAL SKILLS RECORD</Text> 
-        <View style={styles.container}>
-        <Image accessible={true} accessibilityLabel="Image" source={require('../assets/images/ClinicalSkillsLogo4-01.png')} style={{width: 275, height: 300, marginLeft: 16, marginTop:0}} />
+        <View style={styles.container1}>
+   <TouchableOpacity onPress={this.scanFingerPrint}>
+<Image source={require('../assets/images/fingerprint.png')} style={{width: 300, height: 150, marginTop: 5}} />   
+</TouchableOpacity>
+        {/* <Image accessible={true} accessibilityLabel="Image" source={require('../assets/images/ClinicalSkillsLogo4-04.png')} style={{width: 175, height: 150, marginLeft: 16, marginTop:0}} /> */}
+        <View style= {styles.container}>
+     
        {/*  <View style={styles.container1}>
           <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync('https://forms.office.com/r/sfy50Zui9m') }>
           <Image accessible={true} accessibilityLabel="Image" source={require('../assets/images/skillsIcon6.png')} style={{width: 175, height: 75, marginTop:20}} />
@@ -35,6 +69,7 @@ export default function LinksScreen() {
   </View>
 
         </View>
+       </View>
        </View>
        </View>
       
@@ -98,6 +133,7 @@ v_container: {
   },
   container1: {
     flex: 1,
+    //paddingTop: 30,
     justifyContent: 'center', 
     alignSelf: 'center'
   },

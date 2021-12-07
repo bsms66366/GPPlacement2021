@@ -15,8 +15,21 @@ import {
 
   //Import library for Speedometer
 import RNSpeedometer from 'react-native-speedometer';
+const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-fetch('http://CJs-Work-Mac.local/api/placement', {
+  useEffect(() => {
+    axios.get('http://192.168.1.59:8000/api/video')
+      .then(({ data }) => {
+        console.log(data);
+        //console.log("defaultApp -> data", data.name)
+        setData(data)
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, [data]);
+
+/* fetch('http://CJs-Work-Mac.local/api/placement', {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -26,7 +39,8 @@ fetch('http://CJs-Work-Mac.local/api/placement', {
       firstParam: 'test',
       //secondParam: '{studentID} '
     })
-  }); 
+  });  */
+
 
 
 

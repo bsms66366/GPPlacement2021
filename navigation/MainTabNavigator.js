@@ -20,7 +20,7 @@ import ExaminationsScreen1 from '../screens/ExaminationsScreen1';
 //import ExamLog from '../screens/ExamLog';
 import SkillsScreen from '../screens/SkillsScreen';
 //import Video360Screen from '../screens/Video360Screen';
-import VideoCSScreen2 from '../screens/VideoCSScreen2';
+import VideoCSScreen4 from '../screens/VideoCSScreen4';
 
 //import svgFileScreen from '../screens/svgFileScreen'
 //import svgFile2 from '../screens/svgFile2'
@@ -109,7 +109,7 @@ ModuleStack.navigationOptions = {
 
 const SessionsStack = createStackNavigator(
   {
-    VideoCSScreen2: VideoCSScreen2,
+    VideoCSScreen4: VideoCSScreen4,
   },
   config
 );
