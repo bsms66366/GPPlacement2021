@@ -14,6 +14,7 @@ export default function App() {
   
 
   const [postalCode, setPostalcode] = useState('');
+  const [street, setStreet] = useState('');
   const [title, setTitle] = useState('');
   const [surgery, setsurgery] = useState([]);
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
@@ -46,23 +47,6 @@ export default function App() {
 )
 .then(data => console.log(data))
   .catch(data => console.log(data))
- 
- /* fetch('http://192.168.1.59:8000/api/placement', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      title:'',
-      postalCode: ''
-      //secondParam: '{studentID} '
-    })
-  })
-  // .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(data => console.log(data))
-  ; */
   }
  
 
@@ -155,6 +139,8 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
       let response = await Location.reverseGeocodeAsync({
         latitude,
         longitude
+        
+        
       });
 
       for (let item of response) {
@@ -176,22 +162,23 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 
   return (
     <View style={styles.container}>
-    <Text style={{marginTop: 30, fontSize: 20}}>Current location</Text>
-      <Image source={require('../assets/geoyellow.png')} style={styles.image} />
+    <Text style={{marginTop: 20, fontSize: 20, color: '#fff', marginBottom: 20,}}>Current location</Text>
+      <Image source={require('../assets/images/geoyellow.png')} style={styles.image} />
       {/* <Text style={styles.text}>{displayCurrentAddress}</Text> */}
 
 
-      <TextInput placeholder='Student Number' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
+      <TextInput placeholder='Student Number' style={{marginTop: 30, fontSize: 18, color: '#fff', width: 200, borderColor: '#FAD607', borderWidth: 1}}
         onChangeText={(title) => setTitle(title)}
         value={title}/>  
-     <TextInput placeholder='Postcode' style={{ marginTop: 5, marginBottom: 5,  fontSize:18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        
+     <TextInput placeholder='Postcode' style={{ marginTop: 5, marginBottom: 5,  fontSize:18, color: '#fff', width: 200, borderColor: '#FAD607', borderWidth: 1}}
+        onValueChange={(postalCode) => setPostalcode (postalCode)}
         value={displayCurrentAddress}
         editable={false} /> 
-     {/*    <TextInput placeholder='Postcode' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
-        onValueChange={(postalCode) => setPostcode (postalCode)}
-        value={displayCurrentAddress} />  */}
-        <Button onPress={saveItem} title="Save" /> 
+      <TextInput placeholder='street' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
+        onValueChange={(street) => setStreet (street)}
+        value={displayCurrentAddress}
+        editable={false} />
+        <Button onPress={saveItem} title="Save"  /> 
       
 
  
@@ -201,7 +188,9 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.postalCode}, {item.title}</Text>
         <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => viewItem(item.title)}></Text>
+        <View style={styles.Button}>
          <Button title="Delete" onPress={() => deleteItem(item.id)} />
+         </View>
         </View>} 
         data={surgery} 
         //ItemSeparatorComponent={listSeparator} 
@@ -220,7 +209,10 @@ const styles = StyleSheet.create({
  },
  listcontainer: {
   flexDirection: 'row',
-  backgroundColor: '#fff',
+  //backgroundColor: '#fff',
+  backgroundColor: '#FAD607',
+  borderColor: 'gray',
+  borderWidth: 1,
   alignItems: 'center'
  },
   image: {
@@ -230,6 +222,12 @@ const styles = StyleSheet.create({
     marginBottom: 20
 },
 text: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#fff'
+  },
+
+  Button:{
     fontSize: 20,
     fontWeight: '400',
     color: '#fff'
