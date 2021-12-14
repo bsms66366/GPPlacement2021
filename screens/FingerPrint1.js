@@ -55,6 +55,7 @@ render() {
 
 </TouchableOpacity>
 </View>
+//</View>
 
     );
 }

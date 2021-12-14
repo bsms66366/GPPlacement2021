@@ -14,7 +14,7 @@ export default function App() {
   
 
   const [postalCode, setPostalcode] = useState('');
-  const [street, setStreet] = useState('');
+  const [street, setStreet] = useState ('');
   const [title, setTitle] = useState('');
   const [surgery, setsurgery] = useState([]);
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
@@ -145,12 +145,13 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
 
       for (let item of response) {
         console.log(item)
-        let address = `${item.postalCode}`;
-
+        let address = `${item.postalCode}`; 
         setDisplayCurrentAddress(address);
 
         if (address.length > 0) {
           setTimeout(() => {
+ 
+
             //navigation.navigate('Home', { item: address });
           }, 2000);
         }
@@ -174,10 +175,10 @@ const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
         onValueChange={(postalCode) => setPostalcode (postalCode)}
         value={displayCurrentAddress}
         editable={false} /> 
-      <TextInput placeholder='street' style={{marginTop: 30, fontSize: 18, width: 200, borderColor: 'gray', borderWidth: 1}}
+      {/*  <TextInput placeholder='building name' style={{marginTop: 2, fontSize: 18, color: '#FAD607', width: 200}}
         onValueChange={(street) => setStreet (street)}
         value={displayCurrentAddress}
-        editable={false} />
+        editable={false} /> */}
         <Button onPress={saveItem} title="Save"  /> 
       
 

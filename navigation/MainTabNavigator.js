@@ -102,7 +102,7 @@ const ModuleStack = createStackNavigator(
 ModuleStack.navigationOptions = {
   tabBarLabel: 'Skills',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-bed' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios','android' ? 'md-cog' : 'md-link'} />
   ),
 };
 /*****************************************************Resources ****/

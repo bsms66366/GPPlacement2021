@@ -32,7 +32,7 @@ export default function LinksScreen() {
 
     let location = await Location.getCurrentPositionAsync({});
     //alert (JSON.stringify(location));
-        WebBrowser.openBrowserAsync('http://192.168.1.59:8000/api/Student'),alert('Now login to your Eportfolio!');
+        WebBrowser.openBrowserAsync('http://192.168.1.59:8000/api/Users'),alert('Nyou are now in the users table!');
       } else {
         this.setState({
           failedCount: this.state.failedCount + 1,
@@ -50,13 +50,13 @@ export default function LinksScreen() {
       <View style={{ backgroundColor: "#005E7E", alignItems: 'center'}}>
         <Text accessible={true} accessibilityLabel="bsms digital attendance" style={styles.titleText} style={{ color: 'white', fontSize: 20, marginTop: 20, textAlign:"center"}}>BSMS DIGITAL PLACEMENT</Text>
         <Text accessible={true} accessibilityLabel="and skills record" style={styles.titleText} style={{ color: 'white', fontSize: 20, marginTop: 1, textAlign:"center"}}>CLINICAL SKILLS RECORD</Text> 
-        <View style={styles.container1}>
-   <TouchableOpacity onPress={this.scanFingerPrint}>
-<Image source={require('../assets/images/fingerprint.png')} style={{width: 300, height: 150, marginTop: 5}} />   
-</TouchableOpacity>
+        {/* <View style={styles.container1}> */}
+  
         {/* <Image accessible={true} accessibilityLabel="Image" source={require('../assets/images/ClinicalSkillsLogo4-04.png')} style={{width: 175, height: 150, marginLeft: 16, marginTop:0}} /> */}
-        <View style= {styles.container}>
-     
+        <View style= {styles.container1}>
+      <TouchableOpacity onPress={scanFingerPrint}>
+<Image source={require('../assets/images/fingerprint.png')} style={{width: 300, height: 350}} />   
+</TouchableOpacity>
        {/*  <View style={styles.container1}>
           <TouchableOpacity onPress = {() => WebBrowser.openBrowserAsync('https://forms.office.com/r/sfy50Zui9m') }>
           <Image accessible={true} accessibilityLabel="Image" source={require('../assets/images/skillsIcon6.png')} style={{width: 175, height: 75, marginTop:20}} />
@@ -71,7 +71,7 @@ export default function LinksScreen() {
         </View>
        </View>
        </View>
-       </View>
+       //</View>
       
    
  
@@ -134,7 +134,8 @@ v_container: {
   container1: {
     flex: 1,
     //paddingTop: 30,
-    justifyContent: 'center', 
+    marginTop:20,
+    //justifyContent: 'center', 
     alignSelf: 'center'
   },
   container2: {
