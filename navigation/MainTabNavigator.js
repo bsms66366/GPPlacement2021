@@ -54,7 +54,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    StudentLogin: StudentLogin,
+    CSHomeScreen: CSHomeScreen,
   },
   config
 );
