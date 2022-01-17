@@ -36,6 +36,7 @@ import CSHomeScreen from '../screens/CSHomeScreen';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 import LocationLog from '../screens/LocationLog';
 import FingerPrint1 from '../screens/FingerPrint1';
+import StudentLogin from '../screens/StudentLogin';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
 //import fetchScreen2 from '../screens/fetchScreen2';
@@ -53,7 +54,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    CSHomeScreen: CSHomeScreen,
+    StudentLogin: StudentLogin,
   },
   config
 );
