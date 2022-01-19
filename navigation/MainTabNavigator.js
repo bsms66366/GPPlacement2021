@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome5 } from '@expo/vector-icons';
 //import * as Font from 'expo-font';
@@ -36,7 +37,8 @@ import CSHomeScreen from '../screens/CSHomeScreen';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 import LocationLog from '../screens/LocationLog';
 import FingerPrint1 from '../screens/FingerPrint1';
-import StudentLogin from '../screens/StudentLogin';
+import ldapLogin from '../config/ldapLogin';
+//import StudentLogin from '../screens/StudentLogin';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
 //import fetchScreen2 from '../screens/fetchScreen2';
@@ -54,7 +56,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    CSHomeScreen: CSHomeScreen,
+    ldapLogin: ldapLogin,
   },
   config
 );

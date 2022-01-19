@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 //import * as firebase from "firebase";
 //import '@firebase/auth';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import * as Font from 'expo-font';
 //import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MainTabNavigator from './MainTabNavigator';

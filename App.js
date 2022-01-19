@@ -1,7 +1,8 @@
 //import { AppLoading } from 'expo';
 import AppLoading from 'expo-app-loading';
 import isLoading from 'is-loading';
-
+import { Providers } from './src/Providers';
+//import { Providers } from './src/Providers';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
@@ -9,8 +10,9 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-//import Login from './screens/LoginScreen'
+import Login from './screens/PhoneLogin'
 import AppNavigator from './navigation/AppNavigator';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);

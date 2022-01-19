@@ -5,7 +5,7 @@ import * as SQLite from 'expo-sqlite';
 import * as LocalAuthentication from 'expo-local-authentication';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 const db = SQLite.openDatabase('locationdb.db');
 

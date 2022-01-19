@@ -2,12 +2,14 @@ import React, { Component } from "react";
 //import { Button } from "../components";
 //import { Input } from "../components";
 import axios from "axios";
-import { AsyncStorage, ScrollView, StyleSheet, Text, TextInput, View, Button, FlatList } from "react-native";
-import { _storeToken, _clearToken, _storeUser } from "../helpers/asyncStorage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView, StyleSheet, Text, TextInput,Input, View, Button, FlatList } from "react-native";
+//import { _storeToken, _clearToken, _storeUser } from "../helpers/asyncStorage";
+import { _storeToken, _clearToken, _storeUser } from '@react-native-async-storage/async-storage';
 import * as LocalAuthentication from 'expo-local-authentication';
 const AUTH_KEY = "@AUTH_TOKEN_KEY";
 const USER = "@USER";
-export default class Login extends Component {
+export default class app extends Component {
  constructor(props) {
         super(props);
         this.state = {
