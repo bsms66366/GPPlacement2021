@@ -10,7 +10,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Login from './screens/PhoneLogin'
+//import Login from '../config/ldapLogin2'
 import AppNavigator from './navigation/AppNavigator';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 

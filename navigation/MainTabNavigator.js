@@ -22,7 +22,7 @@ import ExaminationsScreen1 from '../screens/ExaminationsScreen1';
 import SkillsScreen from '../screens/SkillsScreen';
 //import Video360Screen from '../screens/Video360Screen';
 import VideoCSScreen4 from '../screens/VideoCSScreen4';
-
+//import LoginScreen from '../screens/LoginScreen';
 //import svgFileScreen from '../screens/svgFileScreen'
 //import svgFile2 from '../screens/svgFile2'
 //import VideoViews from '../screens/VideoViews'
@@ -37,7 +37,7 @@ import CSHomeScreen from '../screens/CSHomeScreen';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 import LocationLog from '../screens/LocationLog';
 import FingerPrint1 from '../screens/FingerPrint1';
-import ldapLogin from '../config/ldapLogin';
+import ldapLogin2 from '../config/ldapLogin2';
 //import StudentLogin from '../screens/StudentLogin';
 //import WelcomeScreen from '../screens/WelcomeScreen';
 //import SurgeryLog from '../screens/SurgeryLog';
@@ -56,7 +56,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    ldapLogin: ldapLogin,
+    ldapLogin2: ldapLogin2,
   },
   config
 );

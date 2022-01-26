@@ -6,7 +6,7 @@ import { AuthContext } from "./AuthProvider";
 import { Button, Text, View } from "react-native";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://airlock-example.test';
+axios.defaults.baseURL = 'http://192.168.1.59:8000/api/sanctum/token';
 
 const Stack = createStackNavigator();
 

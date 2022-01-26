@@ -2,6 +2,7 @@
   "expo": {
     "name": "bsmsatt app version 1.0.0",
     "slug": "bsmsatt",
+    "scheme": "com.cjtaylor.secreet",
     "privacy": "public",
     "platforms": [
       "ios",
